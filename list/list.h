@@ -79,5 +79,17 @@ void name##_free(struct name* node)\
 {\
     free(node);\
 }\
+void name##_destroy(struct name* list)\
+{\
+    list = name##_first(list); \
+    struct name* next = list->_next; \
+    while(list)\
+    {\
+        name##_free(name##_remove(list));\
+        list = next;\
+        next = list->_next;\
+    }\
+\
+}\
 
 #endif
